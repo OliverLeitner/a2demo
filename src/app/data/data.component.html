@@ -1,0 +1,29 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="elem">
+    <div class="elem_title">Listing</div>
+    <div class="elem_text">
+        <table>
+            <thead>
+                <tr>
+                    <th>E-Mail</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of getData">
+                    <td class="small-cell text-left">{{data.email}}</td>
+                    <td class="small-cell text-left">{{data.name}}</td>
+                    <td class="small-cell text-left">{{data.address}}</td>
+                    <td>{{data.comment}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">table bottom text</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

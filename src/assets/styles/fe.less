@@ -1,0 +1,493 @@
+//some colors
+@light-blue:            #5191FD;
+@middle-blue-light:     #1647E9;
+@middle-blue-dark:      #1C54F5;
+@dark-blue:             #13073A;
+@red:                   #D82732;
+@green:                 #0DA921;
+@do-grey:               #4C4E47;
+@white:                 #FFFFFF;
+@black:                 #000000;
+@brighter:              #615192;
+@dark-grey:             #303030;
+
+
+//font colors
+@font-light:            #FFFFFF;
+@font-dark:             #000000;
+@font-bright:           #bbbbbb;
+
+//background image, jic
+@wall-img:              url('/assets/images/background-2426328_1280.jpg') no-repeat center center fixed @black;
+@wall-img-webp:         url('/assets/images/background-2426328_1280.webp') no-repeat center center fixed @black;
+
+//base content heights
+@header-height:         100px;
+@footer-height:         50px;
+@body-height:           600px;
+
+//just a bit of border shadowing...
+.shadow-knows(@color: rgba(0,0,0,0.75), @horiz-offset: 10px, @vert-offset: 10px, @blur: 5px, @spread: 0px) {
+    -webkit-box-shadow: @horiz-offset @vert-offset @blur @spread @color;
+    -moz-box-shadow:    @horiz-offset @vert-offset @blur @spread @color;
+    box-shadow:         @horiz-offset @vert-offset @blur @spread @color;
+}
+
+//background definition
+.backgrounder {
+    .webp {
+        background:       @wall-img-webp;
+    }
+    .nowebp {
+        background:       @wall-img;
+    }
+}
+
+//screen sizes for responsiveness
+.widths {
+    .desktop {
+        max-width:      1024px;
+        min-width:      800px;
+    }
+    .pad {
+        max-width:      800px;
+        min-width:      600px;
+    }
+    .mobile {
+        max-width:      600px;
+        min-width:      250px;
+    }
+}
+
+//generic rules needed for header body and footer
+.content {
+    float:              left;
+    width:              100%;
+}
+
+//font styling
+.fonting {
+    .main {
+        font-family:    Verdana, Tahoma;
+        font-size:      22pt;
+    }
+    .head1 {
+        font-size:      1em;
+    }
+    .head2 {
+        font-size:      0.8em;
+    }
+    .paragraph {
+        font-size:      0.6em;
+    }
+    .ucase {
+        text-transform: uppercase;
+    }
+    .lcase {
+        text-transform: lowercase;
+    }
+}
+
+//center stuff
+.centered {
+    .body {
+        margin:         0px;
+        padding:        0px;
+        border:         0px;
+    }
+    .wrap {
+        margin:         0px auto 0px auto;
+    }
+    .text {
+        text-align:     center;
+        vertical-align: middle;
+    }
+}
+
+//border radiants
+.border-radius-custom (@topleft: 5px, @topright: 5px, @bottomleft: 5px, @bottomright: 5px) {
+    -webkit-border-radius: @topleft @topright @bottomright @bottomleft;
+    -moz-border-radius: @topleft @topright @bottomright @bottomleft;
+    border-radius: @topleft @topright @bottomright @bottomleft;
+}
+
+//conventional stylings start
+html {
+    .backgrounder >     .nowebp;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-width:100%;
+    min-height:100%;
+}
+
+body {
+    .centered >         .body;
+    .fonting >          .main;
+}
+
+a {
+    text-decoration: none;
+    color: @black;
+    outline: none;
+}
+
+div#page-wrap {
+    .centered >         .wrap;
+    .widths >           .desktop;
+    //min-height:         @header-height + @body-height + @footer-height;
+    //background-color:   @white;
+    //.shadow-knows;
+}
+
+//top header with the page title
+div#header {
+    .content;
+    height:             @header-height;
+    background-color:   @dark-blue;
+    color:              @font-light;
+    .centered >         .text;
+    line-height:        @header-height;
+    .fonting >          .head1;
+    .fonting >          .ucase;
+    a#logo-link {
+        color: @white;
+    }
+}
+
+//first part of the body...
+div#mybody {
+    .content;
+    //min-height:         @body-height;
+    .fonting >          .paragraph;
+    background-color:   @white;
+}
+
+//the actual text content goes inside here
+//so we border up some...
+div#content {
+    float:              left;
+    margin:             0px 20px 10px 20px;
+    padding:            0px 10px 0px 10px;
+    width:              94%;
+}
+
+//tab menu
+div#tabs {
+    float:              left;
+    .centered >         .text;
+    height:             56.5px;
+    margin:             10px 0px 0px 30px;
+    ul {
+        clear:          both;
+        float:          left;
+        list-style-type: none;
+        margin:         20px 0px;
+        padding:        0px;
+        li {
+            float:      left;
+            width:      100px;
+            border:     1px solid @black;
+            padding:    5px;
+            border-bottom: 7.8px solid @white;
+            .border-radius-custom(5px, 5px, 0px, 0px);
+        }
+        li.active {
+            background-color: @dark-blue;
+            height: 37px;
+            padding-top: 7px;
+            border-bottom: 0;
+            border-top: 0;
+            a {
+                color: @white;
+            }
+        }
+        li:first-child {
+            border-right: 0px;
+        }
+        li:last-child {
+            border-left:     0px;
+        }
+        li:hover {
+            border-top:  5px solid #000;
+        }
+    }
+}
+
+/**
+ * content element styles
+ */
+//text element
+div.elem {
+    border:             1px solid @do-grey;
+}
+
+div.elem_title {
+    width:              auto;
+    height:             35px;
+    line-height:        30px;
+    padding:            0px 0px 0px 20px;
+    background-color:   @brighter;
+    color:              @white;
+}
+
+div.elem_text {
+    margin:             20px;
+    h1 {
+        font-size:      .fonting > .head2;
+    }
+    p {
+        text-align:     justify;
+    }
+}
+
+div.elem_pic {
+    picture {
+        float:              left;
+        margin-right:       20px;
+    }
+    img {
+        margin:             28px 0px 0px 20px;
+    }
+}
+
+//the demo form
+form {
+    label {
+        clear:both;
+        float:left;
+        width:100%;
+        margin-bottom:10px;
+        input {
+            float:right;
+            width:60%;
+            margin-left:100px;
+        }
+        textarea {
+            float: right;
+            width: 70%;
+            height: 200px;
+        }
+    }
+    input[type="submit"] {
+        clear:both;
+        float:right;
+        margin-top:10px;
+    }
+}
+
+//if form submitting is done...
+div#submit_done {
+    width: 100%;
+    display: none;
+    h2 , p {
+        text-align:center;
+    }
+}
+
+//the demo listing
+table {
+    font-size: 0.7em;
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    tbody {
+        tr {
+            td {
+                border:1px solid @black;
+                margin:0;
+                word-wrap: break-word;
+            }
+            td.small-cell {
+                max-width:80px;
+            }
+            td.text-left {
+                text-align:left;
+                padding:10px;
+            }
+            th.text-center {
+                text-align:center;
+                padding-top:10px;
+            }
+        }
+    }
+    tfoot {
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+        margin:0;
+        padding:0;
+        display: none;
+        tr {
+            td {
+                border: 1px solid @black;
+                margin:0;
+                padding:0;
+            }
+        }
+    }
+}
+
+.hamburger {
+    display:none !important;
+}
+//end of content element styles
+
+//and here oes the footer...
+div#footer {
+    .content;
+    min-height:         @footer-height;
+    .fonting >          .paragraph;
+    background-color:   @black;
+    color:              @font-light;
+    .centered >         .text;
+    line-height:        @footer-height;
+}
+
+//styling for pads
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+    body {
+        background-image:none;
+    }
+    div#page-wrap {
+        .widths > .pad;
+    }
+    div#header {
+        float:left;
+    }
+    div.elem {
+        border:none;
+    }
+    div.elem_pic {
+        float:left;
+        width: 100%;
+        text-align: center;
+    }
+    div.elem_title {
+        padding: 0px;
+        text-align:center;
+    }
+    div.elem_pic > picture {
+        float:unset;
+    }
+    div.elem_text h2 {
+        float:left;
+        width:100%;
+        text-align:center;
+    }
+    div#content {
+        width:100%;
+        margin:0px;
+        padding:0px;
+    }
+    div#tabs {
+        margin:0px;
+    }
+    form label {
+        input {
+            float:unset;
+            width:96%;
+            margin:0px;
+        }
+        textarea {
+            float:unset;
+            width:99%;
+        }
+    }
+    .hamburger {
+        display:block !important;
+    }
+}
+
+//styling for phones
+@media only screen and (max-width: 600px) and (min-width: 250px) {
+    body {
+        background-image:none;
+    }
+    div#page-wrap {
+        .widths > .mobile;
+    }
+    div#header {
+        height: 55px;
+        a#logo-link {
+            float:left;
+            margin: -22px 10%;
+            font-size:0.8em;
+        }
+    }
+    div#tabs {
+        display:none;
+    }
+    div#content {
+        margin:0px;
+        padding:0px;
+        width:100%;
+    }
+    div.elem {
+        border:0px;
+    }
+    div.elem_pic {
+        float: left;
+        text-align: inherit;
+        margin: 0px 0px 0px 20px;
+        picture {
+            float:left;
+            width:100%;
+            margin: 20px 0px 0px 0px;
+            img {
+                margin:0px;
+                float:unset;
+                max-width:90%;
+            }
+        }
+    }
+    div.elem_title {
+        text-align:center;
+        padding: 0px;
+    }
+    div.elem_text {
+        margin:0px 20px;
+        p {
+            float:unset;
+            text-align:justify;
+            width:100%;
+        }
+        h2 {
+            text-align:left;
+        }
+    }
+    form label {
+        input {
+            float:unset;
+            width:96%;
+            margin:0px;
+            font-size:1.2em;
+            height:38px;
+        }
+        textarea {
+            float:unset;
+            width:99%;
+        }
+    }
+    .hamburger {
+        display:block !important;
+    }
+
+}
+
+//styling for phones holding up
+@media only screen and (max-width: 320px) and (min-width: 250px) {
+    div#header {
+        a#logo-link {
+            margin: -7% 0px 0px 7%;
+        }
+    }
+}
+
+//styles for the slidemenu
+.hamburger {
+    float:left;
+    margin-left:20px;
+    background-color:#fff !important;
+}

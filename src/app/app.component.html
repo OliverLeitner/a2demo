@@ -1,0 +1,22 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="page-wrap">
+    <div id="header">
+        <cuppa-slidemenu [config]="config" [menulist]="menuItemsArray" (open)="onMenuOpen()" (close)="onMenuClose()" (onItemSelect)="onItemSelect($event)"></cuppa-slidemenu>
+        <a id="logo-link" href="/">A small Demo</a>
+    </div>
+    <div id="mybody">
+        <div id="tabs">
+            <ul>
+                <li routerLinkActive="active"><a routerLink = "/main">Main</a></li>
+                <li routerLinkActive="active"><a routerLink = "/guest">Form</a></li>
+                <li routerLinkActive="active"><a routerLink = "/data">List</a></li>
+                <li routerLinkActive="active"><a routerLink = "/api">Api</a></li>
+            </ul>
+        </div>
+        <div id="content">
+            <router-outlet></router-outlet>
+        </div>
+        <div id="footer">
+            &copy; Oliver Leitner 2018
+        </div>
+    </div>
