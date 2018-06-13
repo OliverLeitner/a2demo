@@ -7,7 +7,8 @@ include "loader.php";
 //this might get some
 //additional security
 //features in production
-header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json, Content-Charset: UTF-8");
+header("Access-Control-Allow-Origin: http://angular.neverslair-blog.net");
 header("Access-Control-Allow-Headers: content-type");
 if (isset($_POST)) {
     $data = (array)json_decode(key($_POST));
