@@ -3,12 +3,13 @@
  * Doing the db stuff
  */
 namespace demoApp;
+
 /**
  * DataBase Class
  */
 class DataBase
 {
-    private $_CON = null;
+    private $CON = null;
 
     /**
      * constructor function
@@ -17,25 +18,31 @@ class DataBase
      */
     public function __construct($opts)
     {
-        $this->_CON = new \mysqli(
+        $this->CON = new \mysqli(
             $opts->servername,
             $opts->username,
             $opts->password,
             $opts->database
         );
 
-        if ($this->_CON->connect_error) {
+        if ($this->CON->connect_error) {
             return "[{ db: false }]";
         } else {
             return "[{ db: true }]";
         }
     }
 
+    /**
+     * cleanup
+     */
     public function __destruct()
     {
-        $this->_CON->close();
+        $this->CON->close();
     }
 
+    /**
+     * write data into the database
+     */
     public function insertComment($data)
     {
         //insert data into the database
@@ -46,7 +53,7 @@ class DataBase
                 $data["name"]."','".
                 $data["address"]."','".
                 $data["comment"]."')";
-        $this->_CON->query($query);
+        $this->CON->query($query);
         return "[{ db_insert: true }]";
         /*} catch (Exception $ex) {
             echo $ex.getMessage();
@@ -54,10 +61,13 @@ class DataBase
             }*/
     }
 
+    /**
+     * show everything from the table
+     */
     public function selectComments()
     {
         $query = "SELECT * FROM comments";
-        $result = $this->_CON->query($query);
+        $result = $this->CON->query($query);
         return json_encode($result->fetch_all(MYSQLI_ASSOC));
     }
 }
