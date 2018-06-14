@@ -12,8 +12,13 @@ header("Access-Control-Allow-Origin: ".$http_origin);
 header("Access-Control-Allow-Headers: content-type");
 header("Access-Control-Allow-Methods: POST");
 if (isset($_POST)) {
-    $data = (array)json_decode(key($_POST));
-    echo $dbhandler->insertComment($data);
+    $post = base64_decode(key($_POST));
+    $data_array = json_decode($post);
+    $var = array();
+    foreach ($data_array as $key => $val) {
+        $var[$key] = $val;
+    }
+    echo $dbhandler->insertComment($var);
 } else {
     echo "no data to insert";
 }
