@@ -6,6 +6,7 @@ import { Guest } from '../form.model';
 @Component({
     selector: 'guest',
     templateUrl: './guest-form.component.html',
+    preserveWhitespaces: true
 })
 export class GuestFormComponent {
     model = new Guest('', '', '', '');
@@ -13,10 +14,10 @@ export class GuestFormComponent {
     constructor(private http:Http) {
     }
 
-    onSubmit = function(user) {
+    onSubmit(user: any) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        this.http.post('http://angular.neverslair-blog.net:4020/insert.php', JSON.stringify(user), {headers: headers})
+        this.http.post('http://angular.neverslair-blog.net:4020/insert.php', btoa(JSON.stringify(user)), {headers: headers})
             .subscribe(
                 data => {
                     console.log(data);

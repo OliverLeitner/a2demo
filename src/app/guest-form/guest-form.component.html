@@ -1,7 +1,7 @@
 <div class="elem">
 <div class="elem_title">A Form</div>
 <div class="elem_text">
-    <form method="post" enctype="application/x-www-form-urlencoded" (ngSubmit)="onSubmit(model)">
+    <form method="post" (ngSubmit)="onSubmit(model)">
         <fieldset>
             <label for="email">E-Mail: <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email"></label>
             <label for="name">Name: <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"></label>
@@ -12,7 +12,7 @@
     </form>
     <div id="submit_done">
         <h2>Thank you!</h2>
-        <p>Your Data has been processed.</p>
+        <p>We have received your comment.</p>
     </div>
 </div>
 </div>
