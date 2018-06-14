@@ -1,8 +1,8 @@
 export class Guest {
   constructor(
-    public email: string,
-    public name: string,
-    public address: string,
-    public comment: string
+      public email: any,
+      public name: any,
+      public address: any,
+      public comment: any,
   ) { }
 }
