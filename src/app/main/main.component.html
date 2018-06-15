@@ -4,8 +4,15 @@
         <picture>
             <source srcset="/assets/images/code.webp" type="image/webp">
             <source srcset="/assets/images/code.jpg" type="image/jpeg">
-                <img class="jslghtbx-thmb" src="/assets/images/code.jpg" alt="" data-jslghtbx>
+                <a href="javascript:void(0)" id="img1_small" class="lightbox-thumb" (click)="clickLightbox('img1')" (blur)="clickLightbox('img1')">
+                        <img class="jslghtbx-thmb" src="/assets/images/code.jpg" alt="">
+                        <div>magnify</div>
+                </a>
         </picture>
+        <a href="javascript:void(0)" class="lightbox" id="img1_large" (click)="clickLightbox('img1')">
+            <img src="/assets/images/code.jpg">
+            <div>close</div>
+        </a>
     </div>
     <div class="elem_text">
         <h2>Some cool Element Title</h2>

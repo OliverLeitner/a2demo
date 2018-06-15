@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+//fadein fadeout etc
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 //http.get http.post yadda yadda...
 import { HttpModule }      from '@angular/http';
 
@@ -43,6 +46,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     FormsModule,
     RouterModule.forRoot(appRoutes, { useHash: true }),
