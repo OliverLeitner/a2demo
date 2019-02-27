@@ -1,18 +1,18 @@
 import { Http } from '@angular/http';
-import { Router }  from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-declare function recursive(myArg: string) : any;
-declare function splitval(myArg: string) : any;
+declare function recursive(myArg: string): any;
+declare function splitval(myArg: string): any;
 
 @Component({
     selector: 'app-api',
     templateUrl: './api.component.html',
 })
 export class ApiComponent implements OnInit {
-    getData : any[];
-    listing : string = '';
-    constructor(private http:Http) {
+    getData: any[];
+    listing: string;
+    constructor(private http: Http) {
         this.http.get('https://api.cdnjs.com/libraries/less.js')
             .subscribe(
                 (data) => {
@@ -24,10 +24,10 @@ export class ApiComponent implements OnInit {
     }
 
     splitval(val) {
-        if (typeof val == 'object') {
+        if (typeof val === 'object') {
             Object.entries(val).forEach(
                 ([skey, sval]) => {
-                    if (typeof sval == 'string') {
+                    if (typeof sval === 'string') {
                         this.listing = this.listing + '<li>' + skey + ': ' + sval;
                     } else {
                         this.listing = this.listing + '<li class="dropdown-submenu">' + skey + ': <ul class="dropdown-menu">';
@@ -36,7 +36,7 @@ export class ApiComponent implements OnInit {
                 }
             );
         } else {
-            if (typeof val == 'string') {
+            if (typeof val === 'string') {
                 this.listing = this.listing + '<ul class="dropdown-menu"><li>' + val + '</li>';
             }
         }

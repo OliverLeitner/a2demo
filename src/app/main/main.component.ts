@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { Router }  from '@angular/router';
+import { Router } from '@angular/router';
 
-declare function clickLightbox(img_id: string) : void;
+declare function clickLightbox(img_id: string): void;
 const window: any = {};
 
-//overriding href directive...
-//@Directive({
+// overriding href directive...
+// @Directive({
     // tslint:disable-next-line:directive-selector
 //    selector : '[href]'
-//})
-//on certain link targets
-//kinda like the js handler stuff...
+// })
+// on certain link targets
+// kinda like the js handler stuff...
 /*export class HrefDirective {
     @Input() public href: string | undefined;
     @HostListener('click', ['$event']) public onClick(event: Event): void {
@@ -25,22 +25,22 @@ const window: any = {};
 })
 
 export class MainComponent {
-    img_id: string = '';
+    img_id: string;
 
-    //the simplest lightbox ever
+    // the simplest lightbox ever
     clickLightbox(img_id) {
-        document.getElementById(img_id+'_small').removeAttribute('href');
-        if (document.getElementById(img_id+'_large').style.display == 'none') {
-            document.getElementById(img_id+'_large').style.display = 'block';
+        document.getElementById(img_id + '_small').removeAttribute('href');
+        if (document.getElementById(img_id + '_large').style.display === 'none') {
+            document.getElementById(img_id + '_large').style.display = 'block';
         } else {
-            document.getElementById(img_id+'_large').style.display = 'none';
+            document.getElementById(img_id + '_large').style.display = 'none';
         }
     }
 
-    constructor(private _router: Router){
+    constructor(private _router: Router) {
     }
 
     onBack(): void {
-        this._router.navigate(['/']); 
+        this._router.navigate(['/']);
     }
 }
