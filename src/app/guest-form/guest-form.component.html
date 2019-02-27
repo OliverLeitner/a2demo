@@ -1,22 +1,34 @@
 <div class="elem">
-<div class="elem_title">A Form</div>
-<div class="elem_text">
-    <form method="post" (ngSubmit)="onSubmit(model)">
-        <fieldset>
-            <label for="email">E-Mail: <input type="text" class="form-control" id="email" required [(ngModel)]="model.email" name="email"></label>
-            <label for="name">Name: <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"></label>
-            <label for="address">Address: <input type="text" class="form-control" id="address" required [(ngModel)]="model.address" name="address"></label>
-            <label for="comment">Comment: <textarea class="form-control" id="comment" [(ngModel)]="model.comment" name="comment"></textarea></label>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </fieldset>
-    </form>
-    <div id="submit_done">
-        <h2>Thank you!</h2>
-        <p>We have received your comment.</p>
+    <div class="elem_title">A Form</div>
+    <div class="elem_text">
+        <form method="post" [formGroup]="guestForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+                <label for="email">E-Mail: <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" id="email" name="email"></label>
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">email is required</div>
+                </div>
+                <label for="name">Name: <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" id="name" name="name"></label>
+                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                    <div *ngIf="f.name.errors.required">name is required</div>
+                </div>
+                <label for="address">Address: <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" id="address" name="address"></label>
+                <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                    <div *ngIf="f.address.errors.required">address is required</div>
+                </div>
+                <label for="comment">Comment: <textarea formControlName="comment" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.comment.errors }" id="comment" name="comment"></textarea></label>
+                <div *ngIf="submitted && f.comment.errors" class="invalid-feedback">
+                    <div *ngIf="f.comment.errors.required">comment is required</div>
+                </div>
+                <button type="submit" [disabled]="!guestForm.valid" class="btn btn-default">Submit</button>
+            </fieldset>
+        </form>
+        <div id="submit_done">
+            <h2>Thank you!</h2>
+            <p>We have received your comment.</p>
+        </div>
+        <div class="right_side">
+            <p class="center">Havard Art</p>
+            <p><img src="{{ pic }}" [@visibilityChanged]="hideShowAnimation"></p>
+        </div>
     </div>
-    <div class="right_side">
-        <p class="center">Havard Art</p>
-        <p><img src="{{ pic }}" [@visibilityChanged]="hideShowAnimation"></p>
-    </div>
-</div>
 </div>
