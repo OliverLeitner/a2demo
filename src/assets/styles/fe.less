@@ -266,7 +266,7 @@ div.elem_title {
 div.elem_text {
     margin:             20px;
     h1 {
-        font-size:      .fonting > .head2;
+        //font-size:      .fonting > .head2;
     }
     p {
         text-align:     justify;
@@ -284,7 +284,7 @@ div.elem_pic {
 }
 
 //the demo form
-form {
+form[guest_form] {
     fieldset {
         float:left;
         padding-right: 20px;
@@ -319,9 +319,8 @@ form {
 }
 
 //if form submitting is done...
-div#submit_done {
+div[submit_done] {
     width: 100%;
-    display: none;
     h2 , p {
         text-align:center;
     }

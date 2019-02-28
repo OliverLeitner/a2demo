@@ -1,7 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div id="page-wrap">
     <div id="header">
-        <cuppa-slidemenu [config]="config" [menulist]="menuItemsArray" (open)="onMenuOpen()" (close)="onMenuClose()" (onItemSelect)="onItemSelect($event)"></cuppa-slidemenu>
+        <cuppa-slidemenu
+            [config]="config"
+            [menulist]="menuItemsArray"
+            (open)="onMenuOpen()"
+            (close)="onMenuClose()"
+            (onItemSelect)="onItemSelect($event)">
+        </cuppa-slidemenu>
         <a id="logo-link" href="/">A small Demo</a>
     </div>
     <div id="mybody">

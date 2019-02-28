@@ -32,6 +32,9 @@ export class GuestFormComponent implements OnInit {
     guestForm: FormGroup;
     submitted: boolean = false;
 
+    // hide form
+    hideForm: boolean = false;
+
     // fadein and fadeout of the havardart image
     visibilityChanged: boolean;
     hideShowAnimation() {
@@ -43,7 +46,10 @@ export class GuestFormComponent implements OnInit {
     // wont be exactly 10 seconds, then again
     // if the initial one takes a long time, it does
     // not interrupt the experience...
-    constructor(private http: Http, private formBuilder: FormBuilder) {
+    constructor(
+        private http: Http,
+        private formBuilder: FormBuilder,
+    ) {
         // regrab our havardart every 10 seconds
         setInterval(() => {
             this.hideShowAnimation();
@@ -65,12 +71,15 @@ export class GuestFormComponent implements OnInit {
         if (!this.guestForm.invalid) {
             const headers = new Headers();
             headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-            this.http.post('http://angular.neverslair-blog.net:4020/insert.php', btoa(JSON.stringify(this.guestForm.value)), {headers: headers})
+            this.http.post(
+                'http://angular.neverslair-blog.net:4020/insert.php',
+                btoa(JSON.stringify(this.guestForm.value)),
+                {headers: headers},
+            )
                 .subscribe(
                     data => {
                         console.log(data);
-                        document.getElementsByTagName('form')[0].style.display = 'none';
-                        document.getElementById('submit_done').style.display = 'block';
+                        this.hideForm = true;
                     },
                     error => {
                         console.log('in the error one...');
@@ -84,7 +93,9 @@ export class GuestFormComponent implements OnInit {
     // the function that grabs
     // a random image url from the havard art archive...
     grabRandomArt() {
-        this.http.get('https://api.harvardartmuseums.org/image?page=1&sort=random&size=1&q=width:<100&apikey=c6a42ba0-6fe2-11e8-ab88-0dac418e9237')
+        this.http.get(
+            'https://api.harvardartmuseums.org/image?page=1&sort=random&size=1&q=width:<100&apikey=c6a42ba0-6fe2-11e8-ab88-0dac418e9237',
+        )
             .subscribe(
                 (data) => {
                     try {
